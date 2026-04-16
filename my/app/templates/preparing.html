@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .skeleton { background: var(--border-light); border-radius: 4px; }
+    .skeleton-line { height: 12px; margin-bottom: 8px; }
+    .skeleton-line-sm { height: 10px; margin-bottom: 6px; }
+    @keyframes shimmer {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+    .skeleton { animation: shimmer 2s ease-in-out infinite; }
+    .preparing-banner {
+        text-align: center; padding: 20px; margin-bottom: 20px;
+        background: var(--pink-light); border: 1px solid var(--pink-border);
+        border-radius: 12px;
+    }
+    .preparing-banner svg { margin: 0 auto 8px; display: block; }
+</style>
+
+{# Preparing banner #}
+<div class="preparing-banner">
+    <svg width="20" height="20" fill="none" stroke="var(--pink)" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <div style="font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+        {{ t.get("error_not_found_title", "Your order page is being prepared") }}
+    </div>
+    <div style="font-size: 12px; color: var(--text-sub); line-height: 1.5;">
+        {{ t.get("error_not_found_message", "This page may take up to 1 hour to become available after placing your order. Please check back shortly.") }}
+    </div>
+</div>
+
+{# Skeleton: Status #}
+<div class="card" style="margin-bottom: 20px;">
+    <div style="padding: 24px;">
+        <div class="skeleton" style="width: 80px; height: 8px; margin-bottom: 12px;"></div>
+        <div class="skeleton" style="width: 200px; height: 16px; margin-bottom: 10px;"></div>
+        <div class="skeleton" style="width: 280px; height: 10px;"></div>
+        <div style="display: flex; align-items: center; gap: 0; margin-top: 24px; padding: 0 10px;">
+            <div class="skeleton" style="width: 18px; height: 18px; border-radius: 50%;"></div>
+            <div class="skeleton" style="flex: 1; height: 2px;"></div>
+            <div class="skeleton" style="width: 18px; height: 18px; border-radius: 50%;"></div>
+            <div class="skeleton" style="flex: 1; height: 2px;"></div>
+            <div class="skeleton" style="width: 18px; height: 18px; border-radius: 50%;"></div>
+        </div>
+    </div>
+</div>
+
+{# Skeleton: Shipping Information #}
+<div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+        <div class="skeleton" style="width: 16px; height: 16px; border-radius: 3px;"></div>
+        <div class="skeleton" style="width: 130px; height: 12px;"></div>
+    </div>
+    <div style="padding: 24px; text-align: center;">
+        <div class="skeleton" style="width: 44px; height: 44px; border-radius: 50%; margin: 0 auto 12px;"></div>
+        <div class="skeleton" style="width: 200px; height: 10px; margin: 0 auto;"></div>
+    </div>
+</div>
+
+{# Skeleton: Order Details #}
+<div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+        <div class="skeleton" style="width: 16px; height: 16px; border-radius: 3px;"></div>
+        <div class="skeleton" style="width: 100px; height: 12px;"></div>
+    </div>
+    <div style="padding: 16px 24px;">
+        {% for i in range(2) %}
+        <div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; {{ 'border-bottom: 1px solid var(--border-light);' if not loop.last else '' }}">
+            <div class="skeleton" style="width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;"></div>
+            <div style="flex: 1;">
+                <div class="skeleton skeleton-line" style="width: 70%;"></div>
+                <div class="skeleton skeleton-line-sm" style="width: 30%;"></div>
+            </div>
+            <div class="skeleton" style="width: 60px; height: 12px;"></div>
+        </div>
+        {% endfor %}
+    </div>
+    <div style="background: var(--bg-warm); padding: 20px 24px; border-top: 1px solid var(--border-light); border-radius: 0 0 16px 16px;">
+        {% for i in range(4) %}
+        <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+            <div class="skeleton skeleton-line-sm" style="width: 100px;"></div>
+            <div class="skeleton skeleton-line-sm" style="width: 60px;"></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{# Skeleton: Help #}
+<div class="card">
+    <div style="padding: 32px 24px; text-align: center;">
+        <div class="skeleton" style="width: 100px; height: 14px; margin: 0 auto 12px;"></div>
+        <div class="skeleton" style="width: 240px; height: 10px; margin: 0 auto 8px;"></div>
+        <div class="skeleton" style="width: 200px; height: 10px; margin: 0 auto 20px;"></div>
+        <div class="skeleton" style="width: 140px; height: 36px; border-radius: 6px; margin: 0 auto;"></div>
+    </div>
+</div>
+{% endblock %}

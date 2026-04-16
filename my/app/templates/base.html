@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Order - Cross Cart</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFZVN4RWW2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JFZVN4RWW2');
+    </script>
+    <link rel="icon" type="image/png" href="https://s3.ap-northeast-1.amazonaws.com/cross-cart.jp/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --pink: #FE347E;
+            --pink-light: rgba(254, 52, 126, 0.08);
+            --pink-border: rgba(254, 52, 126, 0.18);
+            --cyan: #06B6D4;
+            --purple: #A855F7;
+            --text-main: #1d1d1f;
+            --text-sub: #6b6763;
+            --text-muted: #9a938c;
+            --bg-page: #fdfcfb;
+            --bg-warm: #faf9f7;
+            --bg-white: #ffffff;
+            --border: #e8e5e1;
+            --border-light: #f0eeeb;
+            --destructive: #dc2626;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            padding: 20px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(12px);
+            background-color: rgba(253, 252, 251, 0.85);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .header-logo img { height: 16px; width: auto; display: block; }
+        .lang-switch { display: flex; gap: 4px; }
+        .lang-switch a {
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+        .lang-switch a.active {
+            background-color: var(--text-main);
+            color: #fff;
+        }
+        .lang-switch a:not(.active) {
+            color: var(--text-muted);
+        }
+        .lang-switch a:not(.active):hover {
+            color: var(--text-main);
+        }
+
+        /* Main */
+        .main {
+            max-width: 640px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 32px 20px 48px;
+            flex: 1;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .card-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-header svg {
+            width: 16px; height: 16px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .card-header h2 {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .card-body { padding: 24px; }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* Utilities */
+        .label {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 4px;
+        }
+        .tabular { font-variant-numeric: tabular-nums; }
+
+        @media (max-width: 640px) {
+            .header { padding: 16px 16px; }
+            .main { padding: 20px 16px 40px; }
+            .card-body { padding: 20px 16px; }
+            .card-header { padding: 14px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="https://cross-cart.jp" class="header-logo" style="transition: opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+            <img src="https://s3.ap-northeast-1.amazonaws.com/cross-cart.jp/images/crosscart_t.png"
+                 alt="Cross Cart" width="80" height="16">
+        </a>
+        <div class="lang-switch">
+            {% for l in ["en", "zh"] %}
+            <a href="?lang={{ l }}" class="{{ 'active' if lang == l else '' }}">
+                {{ "EN" if l == "en" else "中文" }}
+            </a>
+            {% endfor %}
+        </div>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        &copy; 2026 Cross Cart &middot; want.jp Inc.
+    </footer>
+</body>
+</html>
