@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light">
+    <title>Order Confirmation - Cross Cart</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style>
+        :root { color-scheme: light only; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6; background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: none;
+        }
+        a { text-decoration: none; }
+
+        .body-bg { background-color: #ffffff; width: 100%; }
+        .container { max-width: 600px; margin: 0 auto; }
+
+        /* Header */
+        .header-bar { background-color: #ffffff; padding: 24px 0; }
+        .header-inner { max-width: 600px; margin: 0 auto; padding: 0 16px; }
+        .header-bar img { height: 12px; width: auto; display: inline-block; }
+
+        /* Hero */
+        .hero { padding: 0 16px 12px; margin-top: 40px; }
+        .order-status {
+            font-size: 24px; font-weight: 400; color: #1d1d1f;
+            line-height: 1.3; letter-spacing: -0.01em;
+        }
+        .intro-text {
+            font-size: 14px; color: #6b6763; line-height: 1.65;
+            padding: 10px 16px 0;
+        }
+
+        /* Track Order CTA */
+        .track-section { padding: 32px 16px 0; }
+        .track-label {
+            font-size: 13px; color: #6b6763; line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .track-btn {
+            display: block;
+            background-color: #FE347E;
+            font-size: 14px; font-weight: 700;
+            padding: 14px 24px; border-radius: 8px;
+            text-align: center;
+        }
+        .track-btn-text { color: #ffffff; }
+        .track-note {
+            font-size: 12px; color: #9a938c; margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        /* Section */
+        .section { padding: 48px 16px 0; }
+        .section-title {
+            font-size: 14px; font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #FE347E;
+            padding-bottom: 14px; border-bottom: 1px solid #f0eeeb;
+            margin-bottom: 20px;
+        }
+
+        /* Info items */
+        .info-item { margin-bottom: 18px; word-break: break-word; }
+        .info-item:last-child { margin-bottom: 0; }
+        .info-label {
+            font-size: 11px; font-weight: 600; color: #9a938c;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 3px;
+        }
+        .info-value { font-size: 14px; font-weight: 500; color: #1d1d1f; }
+
+        /* Items */
+        .items-list { width: 100%; }
+        .item-card { padding: 16px 0; border-bottom: 1px solid #f0eeeb; }
+        .item-card-first { padding-top: 0; }
+        .item-card-last { padding-bottom: 0; border-bottom: none; }
+        .item-table { width: 100%; border-collapse: collapse; }
+        .item-img-cell { width: 64px; vertical-align: top; padding-right: 16px; }
+        .item-img-wrap {
+            width: 64px; height: 64px; background-color: #faf9f7;
+            border-radius: 10px; overflow: hidden;
+        }
+        .item-img { width: 64px; height: 64px; object-fit: contain; display: block; }
+        .item-detail-cell { vertical-align: top; }
+        .item-name { font-size: 14px; font-weight: 500; color: #1d1d1f; line-height: 1.4; margin-bottom: 4px; }
+        .item-variation { font-size: 13px; color: #6b6763; margin-bottom: 6px; }
+        .item-qty { font-size: 13px; color: #9a938c; }
+        .item-price { font-size: 13px; font-weight: 600; color: #1d1d1f; margin-left: 10px; }
+
+        /* Summary */
+        .summary-card {
+            background-color: #faf9f7; border-radius: 12px;
+            padding: 20px 24px; margin-top: 24px;
+        }
+        .summary-table { width: 100%; border-collapse: collapse; }
+        .sum-label { font-size: 13px; color: #6b6763; text-align: left; padding: 8px 0; }
+        .sum-value {
+            font-size: 13px; font-weight: 500; color: #1d1d1f;
+            text-align: right; padding: 8px 0;
+            font-variant-numeric: tabular-nums;
+        }
+        .sum-total .sum-label {
+            font-size: 14px; font-weight: 700; color: #1d1d1f;
+            padding-top: 16px; border-top: 1px solid #e8e5e1;
+        }
+        .sum-total .sum-value {
+            font-size: 14px; font-weight: 700; color: #1d1d1f;
+            padding-top: 16px; border-top: 1px solid #e8e5e1;
+        }
+
+        /* Addresses */
+        .addr-block { margin-bottom: 24px; }
+        .addr-block:last-child { margin-bottom: 0; }
+        .addr-title {
+            font-size: 11px; font-weight: 600; color: #9a938c;
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;
+        }
+        .addr-content { font-size: 13px; color: #1d1d1f; line-height: 1.7; }
+
+        /* Steps */
+        .steps-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        .step-num {
+            width: 24px; vertical-align: top; padding-top: 1px;
+            font-size: 14px; font-weight: 700; color: #FE347E;
+        }
+        .step-text { font-size: 13px; color: #6b6763; line-height: 1.65; padding-bottom: 14px; }
+        .step-text-last { padding-bottom: 0; }
+        .step-bold { font-weight: 600; color: #1d1d1f; }
+
+        /* Help */
+        .help-section { padding: 48px 16px 0; }
+        .help-title { font-size: 13px; color: #6b6763; line-height: 1.5; margin-bottom: 14px; }
+        .help-btn {
+            display: block;
+            border: 1.5px solid #e8e5e1;
+            border-radius: 8px; padding: 14px 24px;
+            font-size: 14px; font-weight: 600;
+            text-align: center;
+        }
+        .help-btn-text { color: #1d1d1f; }
+
+        /* Footer */
+        .footer-section { padding: 48px 16px 0; }
+        .footer-sep { border: none; border-top: 1px solid #f0eeeb; margin: 0 0 24px; }
+        .footer-link {
+            display: block; font-size: 13px; font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .footer-link-text { color: #9a938c; }
+        .footer-link:last-child { margin-bottom: 0; }
+        .footer-bottom {
+            margin-top: 24px; padding-top: 20px;
+            border-top: 1px solid #f0eeeb; padding-bottom: 40px;
+        }
+        .footer-copy { font-size: 12px; font-weight: 500; color: #9a938c; margin-bottom: 4px; }
+        .footer-addr { font-size: 11px; color: #bdb8b3; line-height: 1.6; }
+
+        /* ─── Mobile ─── */
+        @media only screen and (max-width: 600px) {
+            .hero { margin-top: 32px !important; }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+    <div class="body-bg">
+        <!-- Header -->
+        <div class="header-bar">
+            <div class="header-inner">
+                <img src="http://cdn.mcauto-images-production.sendgrid.net/304c95e7363ab846/7f71cfc0-79f6-4526-abaf-883de69b9d5d/182x20.png"
+                     alt="CROSS CART" style="height: 12px; width: auto; display: inline-block;">
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!-- Hero -->
+            <div class="hero">
+                <div class="order-status">Your order is confirmed</div>
+            </div>
+            <div class="intro-text">We're pleased to confirm that your purchase has been successfully received. Below you will find the full details of your order.</div>
+
+            <!-- Track Your Order -->
+            <div class="track-section">
+                <div class="track-label">You can track your order status anytime.</div>
+                <!--[if mso]>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{myOrderUrl}}" style="height:48px;v-text-anchor:middle;width:100%;" arcsize="12%" strokecolor="#FE347E" fillcolor="#FE347E">
+                    <w:anchorlock/>
+                    <center style="color:#ffffff;font-family:'Inter',Arial,sans-serif;font-size:14px;font-weight:bold;">My Order</center>
+                </v:roundrect>
+                <![endif]-->
+                <!--[if !mso]><!-->
+                <a href="{{myOrderUrl}}" class="track-btn" style="text-decoration:none;">
+                    <span class="track-btn-text">My Order</span>
+                </a>
+                <!--<![endif]-->
+                <div class="track-note">It may take up to 1 hour for your order to appear.</div>
+            </div>
+
+            <!-- Order Information -->
+            <div class="section">
+                <div class="section-title">Order Information</div>
+                <div class="info-item">
+                    <div class="info-label">Order ID</div>
+                    <div class="info-value" style="font-weight:600;">{{orderId}}</div>
+                </div>
+                <div class="info-item" style="margin-top:18px;">
+                    <div class="info-label">Shop Name</div>
+                    <div class="info-value">{{shopName}}</div>
+                </div>
+                <div class="info-item" style="margin-top:18px;">
+                    <div class="info-label">Payment Method</div>
+                    <div class="info-value">{{paymentMethod}}</div>
+                </div>
+                <div class="info-item" style="margin-top:18px;">
+                    <div class="info-label">Shipping Method</div>
+                    <div class="info-value">{{shippingMethod}}</div>
+                </div>
+            </div>
+
+            <!-- Your Order -->
+            <div class="section">
+                <div class="section-title">Your Order</div>
+                <div class="items-list">
+                    {{#each orderItems}}
+                    <div class="item-card {{#if @first}}item-card-first{{/if}} {{#if @last}}item-card-last{{/if}}">
+                        <table class="item-table" role="presentation">
+                            <tr>
+                                <td class="item-img-cell">
+                                    <div class="item-img-wrap">
+                                        <img src="{{productImageUrl}}" alt="{{productName}}" class="item-img">
+                                    </div>
+                                </td>
+                                <td class="item-detail-cell">
+                                    <div class="item-name">{{productName}}</div>
+                                    {{#if variationName}}
+                                    <div class="item-variation">{{variationName}}</div>
+                                    {{/if}}
+                                    <div>
+                                        <span class="item-qty">Qty: {{qty}}</span>
+                                        <span class="item-price">{{../currency}} {{orderItemPrice}}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    {{/each}}
+                </div>
+
+                <!-- Summary -->
+                <div class="summary-card">
+                    <table class="summary-table" role="presentation">
+                        <tr>
+                            <td class="sum-label">Subtotal</td>
+                            <td class="sum-value">{{currency}} {{subtotal}}</td>
+                        </tr>
+                        <tr>
+                            <td class="sum-label">International shipping</td>
+                            <td class="sum-value">{{currency}} {{internationalShipping}}</td>
+                        </tr>
+                        <tr>
+                            <td class="sum-label">Inbound shipping</td>
+                            <td class="sum-value">{{currency}} {{inboundShipping}}</td>
+                        </tr>
+                        <tr>
+                            <td class="sum-label">Handling fee</td>
+                            <td class="sum-value">{{currency}} {{handlingFee}}</td>
+                        </tr>
+                        <tr>
+                            <td class="sum-label">Payment processing fee</td>
+                            <td class="sum-value">{{currency}} {{paymentProcessingFee}}</td>
+                        </tr>
+                        <tr class="sum-total">
+                            <td class="sum-label">Total</td>
+                            <td class="sum-value">{{currency}} {{total}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Delivery Information -->
+            <div class="section">
+                <div class="section-title">Delivery Information</div>
+                <div class="addr-block">
+                    <div class="addr-title">Shipping Address</div>
+                    <div class="addr-content">
+                        {{deliveryName}}<br>
+                        {{deliveryAddress1}}<br>
+                        {{#if deliveryAddress2}}{{deliveryAddress2}}<br>{{/if}}
+                        {{deliveryCity}}{{#if deliveryState}}, {{deliveryState}}{{/if}}, {{deliveryZipCode}}<br>
+                        {{deliveryCountry}}<br>
+                        {{deliveryPhoneNumber}}
+                    </div>
+                </div>
+                <div class="addr-block">
+                    <div class="addr-title">Billing Address</div>
+                    <div class="addr-content">
+                        {{billingName}}<br>
+                        {{billingAddress1}}<br>
+                        {{#if billingAddress2}}{{billingAddress2}}<br>{{/if}}
+                        {{billingCity}}{{#if billingState}}, {{billingState}}{{/if}}, {{billingZipCode}}<br>
+                        {{billingCountry}}<br>
+                        {{billingPhoneNumber}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- What happens next -->
+            <div class="section">
+                <div class="section-title">What happens next</div>
+                <table class="steps-table" role="presentation">
+                    <tr>
+                        <td class="step-num">1.</td>
+                        <td class="step-text">
+                            The shop you purchased from will ship your items to Cross Cart within <span class="step-bold">10 days</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="step-num">2.</td>
+                        <td class="step-text">
+                            As soon as Cross Cart receives the items, we will promptly forward them to your designated delivery address.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="step-num">3.</td>
+                        <td class="step-text step-text-last">
+                            You will then receive your package at the address you provided.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Help -->
+            <div class="help-section">
+                <div class="help-title">Need help with your order?</div>
+                <a href="https://help.cross-cart.jp/hc/en-us" class="help-btn" style="text-decoration:none;">
+                    <span class="help-btn-text">Visit Help Center</span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-section">
+                <hr class="footer-sep">
+                <a href="https://help.cross-cart.jp/hc/en-us" class="footer-link" style="text-decoration:none;"><span class="footer-link-text">Help</span></a>
+                <a href="https://help.cross-cart.jp/hc/en-us/articles/4940514378142-Returns-Refunds-Policy" class="footer-link" style="text-decoration:none;"><span class="footer-link-text">Returns &amp; Refunds policy</span></a>
+                <a href="https://cross-cart.jp/legal/terms/" class="footer-link" style="text-decoration:none;"><span class="footer-link-text">Terms of service</span></a>
+                <a href="https://cross-cart.jp/legal/privacy/" class="footer-link" style="text-decoration:none;"><span class="footer-link-text">Privacy policy</span></a>
+                <a href="https://cross-cart.jp/about/profile/" class="footer-link" style="text-decoration:none;"><span class="footer-link-text">About us</span></a>
+
+                <div class="footer-bottom">
+                    <div class="footer-copy">Copyright {{currentYear}} want&#8203;.jp Inc.</div>
+                    <div class="footer-addr">
+                        37F Sumitomo Fudosan Roppongi Grand Tower<br>
+                        3-2-1 Roppongi, Minato-ku, Tokyo, Japan, 106-6237
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
