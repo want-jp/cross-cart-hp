@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Notification - Cross Cart</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6; color: #1d1d1f; background-color: #faf9f7;
+        }
+        a { color: inherit; text-decoration: none; }
+        .email-wrapper { width: 100%; background-color: #faf9f7; padding: 30px 20px; }
+        .email-container {
+            max-width: 600px; margin: 0 auto; background-color: #ffffff;
+            border: 1px solid #e8e5e1; border-radius: 12px; overflow: hidden;
+        }
+        .logo-header { width: 100%; display: block; background-color: #ffffff; min-height: 54px; }
+        .logo-header img { width: 100%; height: auto; display: block; max-width: 600px; }
+        .content-section { padding: 40px 30px; }
+        .order-status {
+            font-size: 26px; font-weight: 400; color: #1d1d1f;
+            margin-bottom: 32px; margin-top: 20px; line-height: 1.3;
+        }
+        .intro-text { font-size: 16px; color: #6b6763; margin-bottom: 40px; line-height: 1.6; }
+        .section { margin-bottom: 40px; }
+        .section.order-info-section { margin-top: 64px; margin-bottom: 24px; }
+        .section-title {
+            font-size: 16px; font-weight: 600; color: #1d1d1f;
+            margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #f0ece8;
+        }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .info-item { display: block; margin-bottom: 20px; word-break: break-word; }
+        .info-item:last-child { margin-bottom: 0; }
+        .info-label {
+            font-size: 12px; font-weight: 500; color: #6b6763;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;
+        }
+        .info-value { font-size: 16px; font-weight: 500; color: #1d1d1f; margin-top: 4px; word-break: break-all; }
+        .tracking-number { font-weight: 500; color: #1d1d1f; font-size: 16px; }
+        .shipping-card { border-radius: 8px; padding: 0; margin-bottom: 24px; }
+        .shipping-info-grid { display: block; margin-bottom: 24px; }
+        .tracking-button-container { text-align: center; padding-top: 20px; margin-bottom: 40px; }
+        .tracking-button {
+            display: inline-block; color: #ffffff; text-decoration: none; font-weight: 600;
+            font-size: 16px; background: #9a938c; padding: 14px 32px; border-radius: 12px;
+        }
+        .tracking-button:hover { background-color: #8a837c; }
+        .help-section {
+            text-align: center; padding: 40px 0; margin-top: 40px; border-top: 1px solid #f0ece8;
+        }
+        .items-list { margin-top: 24px; }
+        .item-card { display: flex; gap: 0; padding: 16px 0; }
+        .item-card:last-child { padding-bottom: 0; }
+        .item-image-wrapper {
+            flex-shrink: 0; width: 80px; height: 80px; min-width: 80px; min-height: 80px;
+            margin-right: 16px; display: flex; align-items: center; justify-content: center;
+            background-color: #f0ece8; border-radius: 8px; overflow: hidden;
+        }
+        .item-image { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .item-details { flex: 1; min-width: 0; }
+        .item-name { font-size: 16px; font-weight: 500; color: #1d1d1f; margin-bottom: 4px; }
+        .item-variation { font-size: 14px; color: #6b6763; margin-bottom: 8px; }
+        .item-quantity { font-size: 14px; color: #86868b; }
+        .help-text { font-size: 16px; color: #1d1d1f; margin-bottom: 20px; font-weight: 500; }
+        .help-link {
+            display: inline-block; color: #1d1d1f; text-decoration: none; font-weight: 600;
+            font-size: 16px; border: 1.5px solid #1d1d1f; background: #ffffff;
+            padding: 10px 24px; border-radius: 12px;
+        }
+        .help-link:hover { background-color: #1d1d1f; color: #ffffff; }
+        .footer-links {
+            margin-bottom: 32px; margin-top: 40px; padding-top: 40px;
+            border-top: 1px solid #f0ece8; text-align: left;
+        }
+        .footer-link {
+            display: block; color: #8a8682; text-decoration: none;
+            font-size: 14px; font-weight: 500; margin-bottom: 10px;
+        }
+        .footer-link:last-child { margin-bottom: 0; }
+        .footer-link:hover { opacity: 0.6; }
+        .footer-company { margin-top: 32px; padding-top: 20px; border-top: 1px solid #f0ece8; }
+        .footer-copyright { font-size: 13px; color: #8a8682; margin-bottom: 6px; font-weight: 500; }
+        .footer-address { font-size: 12px; color: #a8a39f; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="email-container">
+            <div class="logo-header">
+                <img src="https://cdn.mcauto-images-production.sendgrid.net/304c95e7363ab846/1aca1daa-e792-4f70-bc58-ae54f3af0652/810x81.png" alt="CROSS CART">
+            </div>
+            <div class="content-section">
+                <div class="order-status">Your order has been shipped</div>
+                <div class="intro-text">Your order has been dispatched and is on its way to you. You can track your package using the information below.</div>
+                <div class="section">
+                    <div class="section-title">Shipping Details</div>
+                    <div class="shipping-card">
+                        <div class="shipping-info-grid">
+                            <div class="info-item">
+                                <div class="info-label">Carrier</div>
+                                <div class="info-value">{{carrierName}}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Tracking Number</div>
+                                <div class="info-value tracking-number">{{trackingNumber}}</div>
+                            </div>
+                        </div>
+                        <div class="tracking-button-container">
+                            <a href="{{trackingUrl}}" class="tracking-button" style="color: #ffffff !important; text-decoration: none !important;">Track Package</a>
+                        </div>
+                    </div>
+                    {{#each orderItems}}
+                    <div class="items-list">
+                        <div class="item-card">
+                            <div class="item-image-wrapper">
+                                <img src="{{productImageUrl}}" alt="{{productName}}" class="item-image">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-name">{{productName}}</div>
+                                {{#if variationName}}
+                                <div class="item-variation">{{variationName}}</div>
+                                {{/if}}
+                                <div class="item-quantity">Qty: {{qty}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="section order-info-section">
+                    <div class="section-title">Order Information</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Order ID</div>
+                            <div class="info-value order-id">{{salesOrderId}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <div class="help-text">Need help with your order?</div>
+                    <a href="https://help.cross-cart.jp/hc/en-us" class="help-link" style="color: #1d1d1f !important; text-decoration: none !important;">Visit Help Center</a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://help.cross-cart.jp/hc/en-us" class="footer-link" style="color: #8a8682 !important; text-decoration: none !important;">Help</a>
+                    <a href="https://help.cross-cart.jp/hc/en-us/articles/4940514378142-Returns-Refunds-Policy" class="footer-link" style="color: #8a8682 !important; text-decoration: none !important;">Returns & Refunds policy</a>
+                    <a href="https://cross-cart.jp/legal/terms/" class="footer-link" style="color: #8a8682 !important; text-decoration: none !important;">Terms of service</a>
+                    <a href="https://cross-cart.jp/legal/privacy/" class="footer-link" style="color: #8a8682 !important; text-decoration: none !important;">Privacy policy</a>
+                    <a href="https://cross-cart.jp/about/profile/" class="footer-link" style="color: #8a8682 !important; text-decoration: none !important;">About us</a>
+                </div>
+                <div class="footer-company">
+                    <div class="footer-copyright">Copyright {{currentYear}} want.jp Inc.</div>
+                    <div class="footer-address">
+                        37F Sumitomo Fudosan Roppongi Grand Tower<br>
+                        3-2-1 Roppongi, Minato-ku, Tokyo, Japan, 106-6237
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
