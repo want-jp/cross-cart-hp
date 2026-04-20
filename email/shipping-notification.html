@@ -171,7 +171,7 @@
             <div class="hero">
                 <div class="order-status">Your order is on its way</div>
             </div>
-            <div class="intro-text">Your package has been handed to {{carrierName}} and is now in transit to your address.</div>
+            <div class="intro-text">Your package has been handed to {{shippingServiceName}} and is now in transit to your address.</div>
 
             <!-- Tracking card + Track Package CTA -->
             <div class="track-panel">
@@ -179,11 +179,11 @@
                     <div class="tracking-top">
                         <div class="tracking-meta-cell">
                             <div class="tracking-label">Shipping Service</div>
-                            <div class="tracking-carrier-name">{{carrierName}}</div>
+                            <div class="tracking-carrier-name">{{shippingServiceName}}</div>
                         </div>
-                        {{#if carrierLogoUrl}}
+                        {{#if shippingServiceLogoUrl}}
                         <div class="tracking-logo-cell">
-                            <img src="{{carrierLogoUrl}}" alt="{{carrierName}}" class="tracking-logo-img">
+                            <img src="{{shippingServiceLogoUrl}}" alt="{{shippingServiceName}}" class="tracking-logo-img">
                         </div>
                         {{/if}}
                     </div>
